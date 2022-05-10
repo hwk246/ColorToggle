@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer type="text/javascript" src="./script.js"></script>
+    <title>Color Toggle</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="menu">
+        <div class="hanburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <h2>Color Picker</h2>
+      </div>
+
+      <nav id="color-menu">
+        <ul>
+          <li class="home picker">
+            <input name="selection" type="radio" />HOME
+          </li>
+          <li class="red picker"><input name="selection" type="radio" />RED</li>
+          <li class="orange picker">
+            <input name="selection" type="radio" />OARANGE
+          </li>
+          <li class="purple picker">
+            <input name="selection" type="radio" />PURPLE
+          </li>
+          <li class="green picker">
+            <input name="selection" type="radio" />GREEN
+          </li>
+        </ul>
+      </nav>
+
+      <div class="colorByNumber">
+        <label for="">Color by Number 1-5</label>
+        <input type="text" />
+      </div>
+
+      <div class="pickedColor"></div>
+    </header>
+  </body>
+</html>
