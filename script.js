@@ -1,117 +1,35 @@
-// -----> Functions
-
-home = function () {
-  body.classList.toggle("home");
-  body.classList.remove("green");
-  body.classList.remove("red");
-  body.classList.remove("orange");
-  body.classList.remove("purple");
-  liveColor.innerHTML = "background 'HOME'";
-  colorNumber.value = "";
-  radioCheck1.checked = true;
-};
-
-red = function () {
-  body.classList.toggle("red");
-  body.classList.remove("green");
-  body.classList.remove("orange");
-  body.classList.remove("purple");
-  body.classList.remove("home");
-  liveColor.innerHTML = "background 'RED'";
-  colorNumber.value = "";
-  radioCheck2.checked = true;
-};
-
-orange = function () {
-  body.classList.toggle("orange");
-  body.classList.remove("green");
-  body.classList.remove("purple");
-  body.classList.remove("red");
-  body.classList.remove("home");
-  liveColor.innerHTML = "background 'ORANGE'";
-  colorNumber.value = "";
-  radioCheck3.checked = true;
-};
-
-purple = function () {
-  body.classList.toggle("purple");
-  body.classList.remove("green");
-  body.classList.remove("red");
-  body.classList.remove("orange");
-  body.classList.remove("home");
-  liveColor.innerHTML = "background 'PURPLE'";
-  colorNumber.value = "";
-  radioCheck4.checked = true;
-};
-
-green = function () {
-  body.classList.toggle("green");
-  body.classList.remove("red");
-  body.classList.remove("orange");
-  body.classList.remove("home");
-  body.classList.remove("purple");
-  liveColor.innerHTML = "background 'GREEN'";
-  colorNumber.value = "";
-  radioCheck5.checked = true;
-};
-
-numberChanger = function (number) {
-  if (number.keyCode === 49) {
-    home();
-  } else if (number.keyCode === 50) {
-    red();
-  } else if (number.keyCode === 51) {
-    orange();
-  } else if (number.keyCode === 52) {
-    purple();
-  } else if (number.keyCode === 53) {
-    green();
-  }
-};
-
-addClassShow = function () {
-  color.classList.add("show");
-};
-
-removeClassShow = function () {
-  color.classList.remove("show");
-};
-
-// -----> Individual variables
-
 const body = document.querySelector("body");
-const liveColor = document.querySelector(".pickedColor");
-const radioCheck1 = document.querySelector(".home input");
-const radioCheck2 = document.querySelector(".red input");
-const radioCheck3 = document.querySelector(".orange input");
-const radioCheck4 = document.querySelector(".purple input");
-const radioCheck5 = document.querySelector(".green input");
-
-// -----> Eventlisteners
-
-// visibility of color picker menu
-const spans = document.querySelector("header div:first-child div:first-child");
-spans.addEventListener("mouseenter", addClassShow);
-
 const color = document.querySelector("#color-menu");
-color.addEventListener("mouseleave", removeClassShow);
+const getal = document.querySelector(".colorByNumber input");
 
-// changing of background-color and resetting (class) values
-const homeBtn = document.querySelector("#color-menu li:nth-child(1)");
-homeBtn.addEventListener("click", home);
+changeBackgroundColor = (value) => {
+  body.classList.remove(body.classList[0]);
+  body.classList.add(value);
+  document.querySelector(".pickedColor").innerHTML = "backgroundcolor " + value;
+  color.classList.remove("show");
+  Array.from(document.getElementsByClassName(value))[2].checked = true;
+};
 
-const redBtn = document.querySelector("#color-menu li:nth-child(2)");
-redBtn.addEventListener("click", red);
+Array.from(document.getElementsByTagName("li")).forEach((element) => {
+  element.addEventListener("click", (e) =>
+    changeBackgroundColor(element.getAttribute("value"))
+  );
+});
 
-const orangeBtn = document.querySelector("#color-menu li:nth-child(3)");
-orangeBtn.addEventListener("click", orange);
+document
+  .querySelector("header div:first-child div:first-child")
+  .addEventListener("mouseenter", () => color.classList.add("show"));
 
-const purlpleBtn = document.querySelector("#color-menu li:nth-child(4)");
-purlpleBtn.addEventListener("click", purple);
-
-const greenBtn = document.querySelector("#color-menu li:nth-child(5)");
-greenBtn.addEventListener("click", green);
-
-// changes bacground by reading input from keyboard
-const colorNumber = document.querySelector(".colorByNumber input");
-colorNumber.addEventListener("keyup", numberChanger);
+getal.addEventListener("keydown", (e) => {
+  if (e.keyCode === 49) {
+    body.classList.remove(body.classList[0]), changeBackgroundColor("home");
+  } else if (e.keyCode === 50) {
+    body.classList.remove(body.classList[0]), changeBackgroundColor("red");
+  } else if (e.keyCode === 51) {
+    body.classList.remove(body.classList[0]), changeBackgroundColor("orange");
+  } else if (e.keyCode === 52) {
+    body.classList.remove(body.classList[0]), changeBackgroundColor("purple");
+  } else if (e.keyCode === 53) {
+    body.classList.remove(body.classList[0]), changeBackgroundColor("green");
+  }
+});
